@@ -1,0 +1,16 @@
+<div class="dashboard">
+  <div class="symbol-list">
+    
+    <mat-accordion>
+        <mat-expansion-panel hideToggle *ngFor="let symbol of symbols" class="symbol-expansion-panel">
+          <mat-expansion-panel-header (click)="selectSymbolIndex(symbol)">
+            <mat-panel-title> {{symbol}} </mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-market-modal [data]="marketDepthData.get(selectedSymbol)"></app-market-modal> 
+        </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div class="symbol-view">
+    
+  </div>
+</div>
