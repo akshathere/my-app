@@ -8,7 +8,8 @@ import { MarketDepthData, MarketDepthService } from './market-depth.services';
 })
 export class MarketDepthComponent {
   // This will store the market depth data for each symbol
-  marketDepthData : Map<string, MarketDepthData> = new Map();
+  marketDepthDataArray: { symbol: string; data: MarketDepthData }[] = [];
+
 
 
   // Define an array of symbols you want to fetch market depth for
@@ -38,7 +39,7 @@ export class MarketDepthComponent {
     this.fetchMarketDepthForAllSymbols();
     setInterval(() => {
       this.fetchMarketDepthForAllSymbols();
-    }, 30000)
+    }, 3000)
   }
   // Function to fetch market depth for each symbol in the symbols array
   
@@ -53,14 +54,27 @@ export class MarketDepthComponent {
         )
         .subscribe({
           next: (data) => {
+
             // Update the market depth data for the specific symbol
-            console.log(this.marketDepthData)
-            this.marketDepthData.set(symbol, data);
+            const index = this.marketDepthDataArray.findIndex((item) => item.symbol === symbol);
+            if (index !== -1) {
+              // Update existing data
+              this.marketDepthDataArray[index].data = data;
+            } else {
+              // Add new data
+              this.marketDepthDataArray.push({ symbol, data });
+            }
           },
           error: (error) => console.error(`Failed to fetch market depth for ${symbol}`, error),
         });
     });
   }
 
-  selectSymbolIndex = (symbol: string) => this.selectedSymbol = symbol;
+  selectSymbolIndex(symbol: string): void {
+    this.selectedSymbol = symbol;
+  }
+  getMarketDepthDataForSymbol(symbol: string): MarketDepthData | undefined {
+    const foundItem = this.marketDepthDataArray.find(item => item.symbol === symbol);
+    return foundItem?.data;
+  }
 }

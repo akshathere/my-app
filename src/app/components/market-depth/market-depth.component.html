@@ -6,11 +6,12 @@
           <mat-expansion-panel-header (click)="selectSymbolIndex(symbol)">
             <mat-panel-title> {{symbol}} </mat-panel-title>
           </mat-expansion-panel-header>
-          <app-market-modal [data]="marketDepthData.get(selectedSymbol)"></app-market-modal> 
+          <app-market-modal [data]="getMarketDepthDataForSymbol(symbol)"></app-market-modal> 
+          
         </mat-expansion-panel>
     </mat-accordion>
   </div>
   <div class="symbol-view">
-    
+    <app-depth-scalpar [data]="getMarketDepthDataForSymbol(selectedSymbol)"></app-depth-scalpar>
   </div>
 </div>

@@ -11,11 +11,19 @@ import {MatListModule} from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
+import { DepthScalparComponent } from './components/depth-scalpar/depth-scalpar.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input'; 
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
     MarketDepthComponent,
-    MarketModalComponent
+    MarketModalComponent,
+    DepthScalparComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +34,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatListModule,
     MatRippleModule,
     MatExpansionModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
