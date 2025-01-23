@@ -15,14 +15,12 @@ export interface MarketDepthData {
 })
 export class MarketDepthService {
   private readonly API_URL = 'http://localhost:3000/api/stocks/market-depth';
+  private readonly DATA_URL = 'http://localhost:3000/mm';
+  
+  constructor(private http: HttpClient) {
 
-  constructor(private http: HttpClient) {}
-
-  getMarketDepth(symbol: string, priceRange: number, numOrders: number, maxQuantity: number): Observable<MarketDepthData> {
-    return this.http.get<MarketDepthData>(
-      `${this.API_URL}/${symbol}?`,
-      { responseType: 'json' } // Ensure the response is parsed as JSON
-    );
   }
+
+  
   
 }

@@ -17,9 +17,9 @@ export class MarketModalComponent {
   
   ngOnChanges(changes: SimpleChanges): void {
     // Check if the 'data' input has changed and is defined
+    if(!this.data) return
     const combined = combineBuyersAndSellers(this.data);
     const outputArray = convertArrayToObject(combined);
-  console.log("end")
 
     if (changes['data'] && this.data) {
       this.dataSource = outputArray; // Assign when data is available
@@ -34,13 +34,11 @@ function combineBuyersAndSellers(data: any): any[] {
   return buyers.map((buyer :[], index: any) => [buyer, sellers[index]]);
 }
 function convertArrayToObject(array: any[][]): any[] {
-  console.log("start")
   return array.map(([buyer, seller]) => ({
     buyerQuantity: buyer.quantity,
     Buy: buyer.price,
     Sell: seller.price,
     sellerQuantity: seller.quantity,
   }));
-  console.log("end")
 
 }

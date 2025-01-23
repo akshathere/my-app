@@ -1,9 +1,15 @@
 
 .table{
-    margin-top: 10px;
-    border-radius: 10%;
     background-color: rgb(12, 11, 12);
     color: white;
+    min-width: none;
+    thead{
+        border-radius: 10%;
+    }
+    tbody{
+        border-radius: 10%;
+    }
+    
 }
 .bid{
     color: green;
@@ -15,8 +21,7 @@
     color:white
 }
 tr{
-    border: 4px solid;
-    border-color: white;
+    height: 40px;
 }
 .price{
     color:white

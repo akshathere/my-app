@@ -12,16 +12,27 @@
     width: 50%;
     height: 100%;
 
-    .symbol-expansion-panel{
-      background-color: rgb(175, 151, 172);
-      border-radius: 12px;
-      width: 65%;
+    .symbol-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       &:not(:first-child) {
         margin-top: 8px;
       }
+      
+      .symbol-expansion-panel{
+        background-color: rgb(175, 151, 172);
+        border-radius: 12px;
+        width: 65%;
+        
+      }
     }
-  }
 
-  /* .symbol-view {
-    width: 60%;
-  } */
+  }
+ .symbol-panel{
+  display: flex;
+ }
+  
+ .symbol-view p {
+    color: white;
+  }

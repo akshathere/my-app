@@ -1,24 +1,3 @@
-<!-- <ng-container *ngIf="data">
-    <div>
-        <strong>Last Trade Price:</strong> {{ data.lastTradePrice }}
-    </div>
-    <div>
-        <strong>Buyers:</strong>
-        <ul>
-            <li *ngFor="let buyer of data.marketDepth?.buyers">
-                Price: {{ buyer.price }} | Quantity: {{ buyer.quantity }}
-            </li>
-        </ul>
-    </div>
-    <div>
-        <strong>Sellers:</strong>
-        <ul>
-            <li *ngFor="let seller of data.marketDepth?.sellers">
-                Price: {{ seller.price }} | Quantity: {{ seller.quantity }}
-            </li>
-        </ul>
-    </div>
-</ng-container> -->
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 table" >
 
     <!--- Note that these columns can be defined in any order.

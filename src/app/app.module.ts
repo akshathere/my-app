@@ -17,13 +17,24 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input'; 
 import { MatIconModule } from '@angular/material/icon';
+import { SharingService } from './app.services';
+import { MatButtonModule } from '@angular/material/button';
+import {ReactiveFormsModule} from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+const routes: Routes = [
+  { path: 'home', component: MarketDepthComponent },
+  { path: '', component: SearchBarComponent },
+];
 @NgModule({
   declarations: [
     AppComponent,
     MarketDepthComponent,
     MarketModalComponent,
     DepthScalparComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +48,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [ SharingService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
