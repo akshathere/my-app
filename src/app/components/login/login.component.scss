@@ -1,0 +1,111 @@
+.split-container {
+  display: flex;
+  /* places left and right side by side */
+  min-height: 100vh;
+  /* full viewport height */
+
+  /* Left pane: Trading quote */
+  .left-pane {
+    flex: 1;
+    /* takes half the space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Light/dark blue gradient background (feel free to adjust colors) */
+    background: #1669AD;
+
+    /* Quote container */
+    .quote {
+      max-width: 600px;
+      margin: 2rem;
+      text-align: center;
+      color: #fff;
+
+      blockquote {
+        font-size: 1.8rem;
+        font-style: italic;
+        line-height: 1.4;
+      }
+
+      cite {
+        display: block;
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  /* Right pane: Login form */
+  .right-pane {
+    flex: 1;
+    /* takes the other half */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 2rem;
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #2b2b2b;
+    }
+    p{
+      margin-left: 70px;
+    }
+    a {
+      color: #3867d6;
+
+      &:hover {
+        color: #2b4e9e;
+        cursor: pointer;
+      }
+    }
+
+    form {
+      background-color: #ffffff;
+      /* solid white or slightly opaque background */
+      padding: 2rem;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+
+      mat-form-field {
+        display: block;
+        width: 100%;
+        margin-bottom: 1.5rem;
+      }
+
+      button[type='submit'] {
+        display: block;
+        margin: 1.5rem auto 0;
+        background-color: #3867d6;
+        color: #fff;
+        //   padding: 0.75rem 2rem;
+        font-weight: 600;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: #2b4e9e;
+        }
+      }
+    }
+  }
+}
+
+/* Optional: Responsive behavior (stacked on small screens) */
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+
+    .left-pane,
+    .right-pane {
+      flex: none;
+      width: 100%;
+      min-height: 50vh;
+    }
+  }
+}

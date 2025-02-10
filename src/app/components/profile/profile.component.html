@@ -1,0 +1,62 @@
+<!-- If there’s an error, display it in a Material card -->
+<mat-card *ngIf="errorMessage" class="error-card">
+    <mat-card-title>Error</mat-card-title>
+    <mat-card-content>
+      {{ errorMessage }}
+    </mat-card-content>
+  </mat-card>
+  
+  <!-- If the data is still loading, show a loading message -->
+  <div *ngIf="!user && !errorMessage" class="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    <p>Loading profile data...</p>
+  </div>
+  
+  <!-- If user data is available, display it -->
+  <mat-card *ngIf="user" class="profile-card">
+    <mat-card-header>
+      <div mat-card-avatar class="profile-avatar">
+        <!-- You could place an image or an icon here -->
+        <mat-icon>account_circle</mat-icon>
+      </div>
+      <mat-card-title>{{ user.username }}</mat-card-title>
+      <mat-card-subtitle>{{ user.email }}</mat-card-subtitle>
+    </mat-card-header>
+  
+    <!-- Wishlist 1 -->
+    <mat-card class="wishlist1">
+      <mat-card-title class="header-w">Wishlist 1</mat-card-title>
+      <!-- Wrap mat-list-item inside mat-list for proper structure -->
+      <mat-list>
+        <ng-container *ngFor="let wishlist of user?.wishlists">
+          <mat-list-item
+            *ngIf="wishlist.type === 'wishlist1'"
+            class="wishlist-item"
+          >
+            <div mat-line>
+              {{ wishlist.stock.symbol }}
+            </div>
+          </mat-list-item>
+        </ng-container>
+      </mat-list>
+    </mat-card>
+  
+    <!-- Wishlist 2 -->
+    <mat-card class="wishlist2">
+      <mat-card-title class="header-w">Wishlist 2</mat-card-title>
+      <mat-list>
+        <ng-container *ngFor="let wishlist of user?.wishlists">
+          <!-- Updated type check to 'wishlist2' -->
+          <mat-list-item
+            *ngIf="wishlist.type === 'wishlist2'"
+            class="wishlist-item"
+          >
+            <div mat-line>
+              {{ wishlist.stock.symbol }}
+            </div>
+          </mat-list-item>
+        </ng-container>
+      </mat-list>
+    </mat-card>
+  </mat-card>
+  

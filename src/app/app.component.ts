@@ -1,19 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SharingService } from './app.services';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  source : string="assets/MainAfter.jpg";
-  hideImage: boolean = false;
-  hid=()=>{
-    this.hideImage=!this.hideImage;
+export class AppComponent implements OnInit{
+  constructor(public sharingService: SharingService) {
+    
   }
-  data:string="ipo"
-  search=(event:Event)=>{
-    // console.log((<HTMLInputElement>event.target).value )
-    this.data=(<HTMLInputElement>event.target).value;
+  
+  ngOnInit() : void {
   }
-  title = 'my-app';
 }

@@ -1,3 +1,4 @@
-<!-- <app-market-depth></app-market-depth> -->
-<app-navbar></app-navbar>
+<ng-container *ngIf="sharingService.routeCheck()!='/login' && sharingService.routeCheck()!='/signup' ">
+    <app-navbar></app-navbar>
+</ng-container>
 <router-outlet></router-outlet>

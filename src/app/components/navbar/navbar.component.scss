@@ -1,8 +1,24 @@
-.navbar{
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-    div{
-        padding-right: 5px;
-    }
+.example-spacer {
+    flex: 1 1 auto;
 }
+
+.heading {
+    border-right: 2px solid white;
+    padding-right: 10px;
+    margin-right: 8px;
+}
+
+// :root {
+//     --navbar-bg: #3F51B5;
+//     /* Light Mode Color */
+// }
+
+// .dark-mode {
+//     --navbar-bg: #247BA0;
+//     /* Dark Mode Color */
+// }
+
+// .navbar {
+//     background-color: var(--navbar-bg);
+
+// }

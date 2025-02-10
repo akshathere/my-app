@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import {  Router } from '@angular/router';
+import { SharingService } from 'src/app/app.services';
 
 @Component({
   selector: 'app-navbar',
@@ -7,11 +8,19 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(private router : Router){
-
+  route: string =''
+  constructor(private router : Router,private sharingService: SharingService){
+    sharingService.route=this.router.url
   }
+
   navi(path:string) {
     this.router.navigate([path]);
+    this.sharingService.route=this.router.url
     console.log("redirtion tried")
+  }
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(["/login"])
+    this.sharingService.route=this.router.url
   }
 }

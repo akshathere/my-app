@@ -1,0 +1,101 @@
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Number</mat-label>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           (input)="onSearchInput()"
+           [formControl]="query"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option class="mat-options" *ngFor="let symbol of filterSymbolList">
+        <!-- Wrap the option content in a flex container -->
+        <div class="option-container">
+          <span>{{ symbol.name }}</span>
+          <!-- 
+               The button click stops propagation so that clicking it does NOT trigger 
+               the mat-option selection event.
+          -->
+          <button mat-icon-button 
+                  (click)="$event.stopPropagation(); symbol.isAdded ? removeSymbol(symbol.name) : addSymbol(symbol.name)"
+                  aria-label="Toggle Symbol">
+            <mat-icon>{{ symbol.isAdded ? 'remove' : 'add' }}</mat-icon>
+          </button>
+        </div>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+
+<div class="dashboard-container">
+<div class="dashboard" cdkDropList [ngClass]="isDarkMode ? 'dark-mode' : 'light-mode'"
+  [cdkDropListData]="wishlistData" (cdkDropListDropped)="drop($event)">
+  <mat-accordion>
+    <div *ngFor="let symbol of wishlistData" class="symbol-container" cdkDrag>
+      <mat-expansion-panel #panel="matExpansionPanel" hideToggle class="symbol-expansion-panel" [expanded]="selectedSymbol === symbol.name" (click)="selectSymbol(symbol.name); expansionPanelTriggered()">
+        <mat-expansion-panel-header class="expansion-header">
+          <!-- This container covers the clickable title area.
+               Clicking here will trigger selectSymbol() and (by default) the expansion toggle. -->
+          <div class="header-content">
+            <mat-panel-title>
+              {{ symbol.name }}
+            </mat-panel-title>
+          </div>
+
+          <!-- Interactive buttons -->
+          <div class="header-actions">
+            <!-- Menu button: Stop propagation so header click isn’t triggered -->
+            <button mat-icon-button 
+                    [matMenuTriggerFor]="menu" 
+                    aria-label="Example icon-button with a menu"
+                    (click)="$event.stopPropagation()">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="removeSymbol(symbol.name);$event.stopPropagation() ">
+                <span>remove symbol</span>
+              </button>
+              <button mat-menu-item (click)="showDepthScalpar(symbol.name);handleEvent($event)">
+                <span>depth-scalper</span>
+              </button>
+            </mat-menu>
+            
+            <!-- Remove button: Also stop propagation -->
+            <!-- <button mat-icon-button
+                    (click)="removeSymbol(symbol.name); $event.stopPropagation()"
+                    aria-label="Toggle Panel">
+              <mat-icon>remove</mat-icon>
+            </button> -->
+          </div>
+        </mat-expansion-panel-header>
+    
+        <ng-container *ngIf="!isLoading; else loadingTemplate">
+          <app-market-modal [data]="selectedSymbolData"></app-market-modal>
+        </ng-container>
+      </mat-expansion-panel>
+    </div>
+  </mat-accordion>
+  
+</div>
+<div class="symbol-view">
+    <ng-container *ngIf="!isLoading && selectedSymbol !== '' && showDepth; else noSymbolSelected">
+      
+      <app-depth-scalpar [data]="selectedSymbolData"></app-depth-scalpar>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="loading-spinner">
+    <mat-spinner diameter="30"></mat-spinner>
+  </div>
+</ng-template>
+<ng-template #noSymbolSelected>
+  <p>Select a symbol to view market depth</p>
+</ng-template>
+
+
+<!-- [expanded]="selectedSymbol === symbol.name && !isLoading" -->

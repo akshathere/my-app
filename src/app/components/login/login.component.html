@@ -1,0 +1,39 @@
+<div class="split-container">
+  <!-- Left side: Trading quote -->
+  <div class="left-pane">
+    <div class="quote">
+      <blockquote>
+        “Trade your plan, plan your trade.”
+      </blockquote>
+      <cite>— Utrade Solutions pvt lmt.</cite>
+    </div>
+  </div>
+
+  <!-- Right side: Existing login form -->
+  <div class="right-pane">
+    <h2>Login</h2>
+    <form (ngSubmit)="login()">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="credentials.email" name="email" required />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          [(ngModel)]="credentials.password"
+          name="password"
+          required
+        />
+      </mat-form-field>
+      <p>New user? <a (click)="router.navigate(['/signup']);">signup</a> first to get started</p>
+      
+      <button mat-raised-button color="primary" type="submit">
+        Login
+      </button>
+    </form>
+  </div>
+  
+</div>
